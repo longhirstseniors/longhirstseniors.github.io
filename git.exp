@@ -1,0 +1,32 @@
+#!/usr/bin/expect
+
+## Access CLI
+set loginUser "longhirstseniors"
+set loginPassword "fc0a7eed06be5dc590c06ab984ea7e96e81772a6"
+
+
+## Expect Parameters
+set timeout 20
+set successMsg "Status: Success"
+set failureMsg "Status: Failure"
+
+spawn git push
+#spawn ssh -l $loginUser $mgmtServerAddress -p 10000
+expect_after eof {exit 0}
+
+set timeout 10
+
+##interact
+expect "Username for 'https://github.com': " {send "$loginUser\r"}
+## puts "\n## Starting Script... ##\n"
+set timeout 600
+
+
+
+expect "Password for 'https://longhirstseniors@github.com': " {send "$loginPassword\r"}
+  
+##expect $successMsg {} \
+ ##  timeout { puts "\n\nScript Failure: \n\r"; exit}
+   
+  interact 
+   
