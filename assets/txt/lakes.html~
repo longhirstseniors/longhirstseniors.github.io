@@ -1,0 +1,180 @@
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:7px 8px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 20px;word-break:normal;}
+.tg .tg-gra2{background-color:#9b9b9b;border-color:#ffffff;color:#00009b;font-size:14px;text-align:center;vertical-align:top}
+.tg .tg-0byw{background-color:#9b9b9b;border-color:#ffffff;color:#00009b;font-size:14px;text-align:left;vertical-align:top}
+
+
+
+/*
+round the corners
+*/
+
+th:first-of-type {
+  border-top-left-radius: 20px;
+}
+th:last-of-type {
+  border-top-right-radius: 20px;
+}
+tr:last-of-type td:first-of-type {
+  border-bottom-left-radius: 20px;
+}
+tr:last-of-type td:last-of-type {
+  border-bottom-right-radius: 20px;
+}
+
+
+</style>
+
+
+
+
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-gra2" colspan="4">Lakes</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-gra2">Hole</td>
+    <td class="tg-gra2">Yards</td>
+    <td class="tg-gra2">Par</td>
+    <td class="tg-gra2">SI</td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">1</td>
+    <td class="tg-gra2">280</td>
+    <td class="tg-gra2">4</td>
+    <td class="tg-gra2">15</td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">2</td>
+    <td class="tg-gra2">384</td>
+    <td class="tg-gra2">4</td>
+    <td class="tg-gra2">7</td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">3</td>
+    <td class="tg-gra2">447</td>
+    <td class="tg-gra2">5</td>
+    <td class="tg-gra2">3</td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">4</td>
+    <td class="tg-gra2">363</td>
+    <td class="tg-gra2">4</td>
+    <td class="tg-gra2">1</td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">5</td>
+    <td class="tg-gra2">166</td>
+    <td class="tg-gra2">3</td>
+    <td class="tg-gra2">17</td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">6</td>
+    <td class="tg-gra2">130</td>
+    <td class="tg-gra2">3</td>
+    <td class="tg-gra2">11</td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">7</td>
+    <td class="tg-gra2">370</td>
+    <td class="tg-gra2">4</td>
+    <td class="tg-gra2">9</td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">8</td>
+    <td class="tg-gra2">390</td>
+    <td class="tg-gra2">4</td>
+    <td class="tg-gra2">5</td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">9</td>
+    <td class="tg-gra2">299</td>
+    <td class="tg-gra2">4</td>
+    <td class="tg-gra2">13</td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">10</td>
+    <td class="tg-gra2">146</td>
+    <td class="tg-gra2">3</td>
+    <td class="tg-gra2">16</td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">11</td>
+    <td class="tg-gra2">271</td>
+    <td class="tg-gra2">4</td>
+    <td class="tg-gra2">18</td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">12</td>
+    <td class="tg-gra2">382</td>
+    <td class="tg-gra2">4</td>
+    <td class="tg-gra2">10</td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">13</td>
+    <td class="tg-gra2">292</td>
+    <td class="tg-gra2">4</td>
+    <td class="tg-gra2">6</td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">14</td>
+    <td class="tg-gra2">153</td>
+    <td class="tg-gra2">3</td>
+    <td class="tg-gra2">14</td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">15</td>
+    <td class="tg-gra2">185</td>
+    <td class="tg-gra2">3</td>
+    <td class="tg-gra2">4</td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">16</td>
+    <td class="tg-gra2">496</td>
+    <td class="tg-gra2">5</td>
+    <td class="tg-gra2">12</td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">17</td>
+    <td class="tg-gra2">368</td>
+    <td class="tg-gra2">4</td>
+    <td class="tg-gra2">2</td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">18</td>
+    <td class="tg-gra2">538</td>
+    <td class="tg-gra2">5</td>
+    <td class="tg-gra2">8</td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">in</td>
+    <td class="tg-gra2">2831</td>
+    <td class="tg-gra2">35</td>
+    <td class="tg-gra2"></td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">out</td>
+    <td class="tg-gra2">2829</td>
+    <td class="tg-gra2">35</td>
+    <td class="tg-gra2"></td>
+  </tr>
+  <tr>
+    <td class="tg-gra2">total</td>
+    <td class="tg-gra2">5660</td>
+    <td class="tg-gra2">70</td>
+    <td class="tg-gra2"></td>
+  </tr>
+  <tr>
+    <td class="tg-gra2" colspan="4"></td>
+  </tr>
+</tbody>
+</table>
+
+
