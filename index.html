@@ -89,13 +89,9 @@
 <br>exactly <input type="text" size="4" id="Plakes" name="Plakes" value="$hhlakes" STYLE="color: #ffffff; background-color: #14bd9d; border-style:none; text-align:middle;" readonly />
 <br>with 95% Handicap Adjustment applied = <input type="text" size="4" id="Plakes95" name="Plakes95" value="$hhlakes95" STYLE="color: #ffffff; background-color: #14bd9d; border-style:none; text-align:middle;" readonly />
     
-               rounded to <input type="text" size="4" id="rPlakes95" name="rPlakes95" value="$rhhlakes95" STYLE="color: #ffffff; background-color: #14bd9d; border-style:none; text-align:middle;" readonly />
+rounded to <input type="text" size="4" id="rPlakes95" name="rPlakes95" value="$rhhlakes95" STYLE="color: #ffffff; background-color: #14bd9d; border-style:none; text-align:middle;" readonly />
     
-               
-               
-               
-               
-               </p>
+            </p>
             </div>
             <br>
             <br>
@@ -103,7 +99,10 @@
             <p class="lead"><br>Your Dawson Course Handicap is <input type="text" size="4" id="Hdawson" name="Hdawson" value="$hdawson" STYLE="color: #0000FF; background-color: #14bd9d; border-style:none; text-align:middle;" readonly />
 <br>exactly <input type="text" size="4" id="Pdawson" name="Pdawson" value="$hhdawson" STYLE="color: #ffffff; background-color: #14bd9d; border-style:none; text-align:middle;" readonly />
 <br>with 95% Handicap Adjustment applied = <input type="text" size="4" id="Pdawson95" name="Pdawson95" value="$hhdawson95" STYLE="color: #ffffff; background-color: #14bd9d; border-style:none; text-align:middle;" readonly />
-            </p>
+  
+rounded to <input type="text" size="4" id="rPdawson95" name="rPdawson95" value="$rhhdawson95" STYLE="color: #ffffff; background-color: #14bd9d; border-style:none; text-align:middle;" readonly />
+         
+         </p>
          </div>   
          </div>
          <br>
@@ -146,8 +145,7 @@
                 document.getElementById("Pdawson95").value = Number.parseFloat(hhdawson95).toFixed(1);
             
                 document.getElementById("rPlakes95").value = rhhlakes95;
-               
-               
+                document.getElementById("rPdawson95").value = rhhdawson95;
                
                 updategreet();
             }
