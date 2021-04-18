@@ -88,6 +88,13 @@
                <p class="lead">Your Lakes Course Handicap is <input type="text" size="4" id="Hlakes" name="Hlakes" value="$hlakes" STYLE="color: #0000FF; background-color: #14bd9d; border-style:none; text-align:middle;" readonly />
 <br>exactly <input type="text" size="4" id="Plakes" name="Plakes" value="$hhlakes" STYLE="color: #ffffff; background-color: #14bd9d; border-style:none; text-align:middle;" readonly />
 <br>with 95% Handicap Adjustment applied = <input type="text" size="4" id="Plakes95" name="Plakes95" value="$hhlakes95" STYLE="color: #ffffff; background-color: #14bd9d; border-style:none; text-align:middle;" readonly />
+    
+               <input type="text" size="4" id="rPlakes95" name="rPlakes95" value="$rhhlakes95" STYLE="color: #ffffff; background-color: #14bd9d; border-style:none; text-align:middle;" readonly />
+    
+               
+               rhhlakes95
+               
+               
                </p>
             </div>
             <br>
@@ -129,6 +136,8 @@
                 var rhhdawson = Number.parseFloat(hdawson).toFixed(1);
                 var hhlakes95 = (rhlakes * 0.95);
                 var hhdawson95 = (rhdawson * 0.95);
+                var rhhlakes95 = Math.round(hhlakes95);
+                var rhhdawson95 = Math.round(hhdawson95);
                 document.getElementById("Hlakes").value = rhlakes;
                 document.getElementById("Hdawson").value = rhdawson;
                 document.getElementById("Plakes").value = rhhlakes;
