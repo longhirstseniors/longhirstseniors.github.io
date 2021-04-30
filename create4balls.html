@@ -1,8 +1,109 @@
 <!DOCTYPE html>
 <html lang = "en">
-<head>
-<meta charset = "utf-8" / >
-</head>
+<style>
+         body {
+         font: normal 18px Verdana, Arial, sans-serif;
+         background: #888888;   
+         }
+  .column {
+  float: left;
+  width: 25%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+
+</style>
+<body>
+
+<br>Set a first tee-time.
+<input type="time" id="starttt" name="starttt"
+       min="07:00" max="12:00" value="08:04" style = "font-size : 20px;background-color: #A0A0A0;">
+ (click on clock icon)
+<br><br>
+<div class="row">
+    <div class="column"></div>
+            <textarea name = "traw-text"
+            id = "traw-text"
+            rows = "9"
+            cols = "25"
+            readonly
+            style = "background-color: #A0A0A0;font-size:18px">Copy the text from the BRS tee-sheet and include the whole page using CTRL-a to select all and then CTRL-c to copy it.
+Paste into red panel using CTRL-v or mouse.
+            </textarea> 
+ 
+     
+    <div class="column"></div>
+            <textarea name = "ttidy-text"
+            id = "ttidy-text"
+            rows = "9"
+            cols = "25"
+            readonly
+            style = "background-color: #A0A0A0;font-size:18px">Click button 1 to tidy the data and create a list of players in the green panel.
+Do any additional editing (delete, add names etc.) in the green panel. Check first tee-time above.
+            </textarea>
+        
+
+    <div class="column"></div>
+         <textarea name = "tgroups-text"
+         id = "tgroups-text"
+         rows = "9"
+         cols = "25"
+         readonly
+         style = "background-color: #A0A0A0;font-size:18px">Click button 2 to create the 4-ball groups and tee-times.
+Button 3 will copy the blue panel contents so they can be pasted elsewhere.
+         </textarea> 
+    <div class="column"></div>
+        <textarea name = "tresults-text"
+        id = "tresults-text"
+        rows = "9"
+        cols = "25"
+        readonly
+        style = "background-color: #888888;font-size:18px" >   
+        </textarea>
+</div>
+<div class="row">
+    <div class="column"></div>
+            <textarea name = "raw-text"
+            id = "raw-text"
+            rows = "20"
+            cols = "25"
+            style = "background-color: #ffA0A0;font-size:18px">
+            </textarea>    
+    <div class="column"></div>
+            <textarea name = "tidy-text"
+            id = "tidy-text"
+            rows = "20"
+            cols = "25"
+            style = "background-color: #A0ffA0;font-size:18px">
+            </textarea>
+    <div class="column"></div>
+         <textarea name = "groups-text"
+         id = "groups-text"
+         rows = "20"
+         cols = "25"
+         style = "background-color: #A0A0ff;font-size:18px">
+         </textarea>
+    <div class="column"></div>
+        <textarea name = "tresults-text"
+        id = "results-text"
+        rows = "20"
+        cols = "25"
+        readonly
+        style = "background-color: #D0D0D0;font-size:18px" >   
+        </textarea>
+</div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const input = document.getElementById('raw-text');
@@ -17,76 +118,11 @@
     }
 
 </script>
-<body style = "background-color:#D0D0D0;font-size:20px">
-    <h2> Seniors - create random 4 ball groups </h2>
-    
-<br>Set a first tee-time.
-<input type="time" id="starttt" name="starttt"
-       min="07:00" max="12:00" value="08:04" style = "font-size : 20px;background-color: #A0A0A0;">
- (click on clock icon)
-<br><br>
 
-    <textarea name = "traw-text"
-        id = "traw-text"
-        rows = "8"
-        cols = "25"
-        readonly
-        style = "background-color: #A0A0A0;font-size:18px">Copy the text from the BRS tee-sheet and include the whole page using CTRL-a to select all and then CTRL-c to copy it.
-Paste into red panel using CTRL-v or mouse.
-    </textarea>
-    <textarea name = "ttidy-text"
-        id = "ttidy-text"
-        rows = "8"
-        cols = "30"
-        readonly
-        style = "background-color: #A0A0A0;font-size:18px">Click button 1 to tidy the data and create a list of players in the green panel.
-Do any additional editing (delete, add names etc.) in the green panel. Check first tee-time above.
-    </textarea>
-    <textarea name = "tgroups-text"
-        id = "tgroups-text"
-        rows = "8"
-        cols = "30"
-        readonly
-        style = "background-color: #A0A0A0;font-size:18px">Click button 2 to create the 4-ball groups and tee-times.
-Button 3 will copy the blue panel contents so they can be pasted elsewhere.
-    </textarea> 
-    <textarea name = "tresults-text"
-        id = "tresults-text"
-        rows = "8"
-        cols = "15"
-        readonly
-        style = "background-color: #D0D0D0;font-size:18px" >
-    </textarea>
-
-
-    <textarea name = "raw-text"
-        id = "raw-text"
-        rows = "15"
-        cols = "25"
-        style = "background-color: #ff99bb;font-size:18px">
-    </textarea>
-    <textarea name = "tidy-text"
-        id = "tidy-text"
-        rows = "15"
-        cols = "30"
-        style = "background-color: #00cc7a;font-size:18px">
-    </textarea>
-    <textarea name = "groups-text"
-        id = "groups-text"
-        rows = "15"
-        cols = "30"
-        style = "background-color: #80bfff;font-size:18px">
-    </textarea> 
-    <textarea name = "results-text"
-        id = "results-text"
-        rows = "15"
-        cols = "15"
-        style = "background-color: #D0D0D0;font-size:18px" >
-    </textarea>
     <br>
     <button onclick = "tidyInput()"
         style = "font-size : 20px;background-color: #A0A0A0;" /> Button 1 - Tidy input to create list of names </button>
-    tries to do the major part of tidying the data and produces a list of players (which is editable).
+    tries to tidy the data and produces an editable list of players.
     <br><br>
     <button onclick = "shuffleArray()"
         style = "font-size : 20px;background-color: #A0A0A0;" / > Button 2 - Create 4-ball groups </button>
@@ -288,6 +324,7 @@ document.execCommand('copy');
 </script>
 </body> 
 </html>
+
 
 
 
