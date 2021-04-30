@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+<meta charset = "utf-8" / >
+</head>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const input = document.getElementById('raw-text');
+        input.addEventListener('paste', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            const pastedText = event.clipboardData.getData('text');
+            input.value = pastedText;
+            ttext = pastedText;
+
+        }
+    }
+
+</script>
+<body style = "background-color:#D0D0D0;font-size:20px">
+    <h2> Seniors - create random 4 ball groups </h2>
+    
+<br>Set a first tee-time.
+<input type="time" id="starttt" name="starttt"
+       min="07:00" max="12:00" value="08:04" style = "font-size : 20px;background-color: #A0A0A0;">
+ (click on clock icon)
+<br><br>
+
+    <textarea name = "raw-text"
+        id = "raw-text"
+        rows = "15"
+        cols = "20"
+        style = "background-color: #ff99bb;font-size:18px">
+    </textarea>
+    <textarea name = "tidy-text"
+        id = "tidy-text"
+        rows = "15"
+        cols = "30"
+        style = "background-color: #00cc7a;font-size:18px">
+    </textarea>
+    <textarea name = "groups-text"
+        id = "groups-text"
+        rows = "15"
+        cols = "35"
+        style = "background-color: #80bfff;font-size:18px">
+    </textarea> 
+    <textarea name = "results-text"
+        id = "results-text"
+        rows = "15"
+        cols = "15"
+        style = "background-color: #D0D0D0;font-size:18px" >
+    </textarea>
+    <br>
+    <button onclick = "tidyInput()"
+        style = "font-size : 20px;background-color: #A0A0A0;" /> Tidy input to create list of names </button>
+    <button onclick = "shuffleArray()"
+        style = "font-size : 20px;background-color: #A0A0A0;" / > Create 4-ball groups </button>
+    <button onclick = "selectFunction()"
+        style = "font-size : 20px;background-color: #A0A0A0;" > Copy tee-sheet to clipboard </button>
+    <br>
+    <p> Make a copy of the raw data from the BRS tee-sheet and include the whole page.This can be edited later
+      if necessary.The easiest way to do this is CTRL-a to select all and then CTRL-c to copy it. Then use mouse or CTRL-v to paste.
+    </p>
+    <p>
+        Paste this data into the first panel. 
+    </p>
+    <p>
+        Use the <b>Tidy input to create list of names</b> button to convert to a list of players which will appear in the second panel.
+    </p>
+    <p>
+        At this point any editing can be done in the green panel. 
+    </p>
+    <p>
+        When ready use the <b>Create 4-ball groups</b> button to create a random list of 4-ball groups in the third panel. 
+    </p>
+    <p>
+        Use <b>Copy tee-sheet to clipboard</b> button to copy the tee-sheet which will make it available to paste.
+    </p>
+    <br><br><br>
+<script>
+function tidyInput() {
+var startx = "no";
+var TidyLines = "";
+var textArea = document.getElementById("raw-text");
+var arrayOfLines = textArea.value.split("\n");
+// if BOOKING INFO is missing, add it
+if (arrayOfLines.findIndex(element => element.includes("BOOKING INFO")) < 0) {
+  arrayOfLines.unshift("BOOKING INFO");
+}
+for (i = 0; i < arrayOfLines.length; i++) {
+  if (arrayOfLines[i].indexOf("BOOKING INFO") > -1) {
+    // start looking
+    startx = "yes";
+  }
+  if (startx == "yes") {
+    if (arrayOfLines[i].indexOf(" ") > -1) {
+      if (arrayOfLines[i].indexOf("18") < 0) {
+        if (arrayOfLines[i].indexOf("Member") < 0) {
+          if (arrayOfLines[i].indexOf("BOOK") < 0) {
+            if (arrayOfLines[i].indexOf("STARTING") < 0) {
+              if (arrayOfLines[i].indexOf("ENDING") < 0) {
+                if (arrayOfLines[i].indexOf("Seniors") < 0) {
+                  if (arrayOfLines[i].indexOf("Info") < 0) {
+                    if (arrayOfLines[i].indexOf("Mens") < 0) {
+                      if (TidyLines.indexOf(arrayOfLines[i]) < 0) {
+                        TidyLines = TidyLines + arrayOfLines[i] + "\n";
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+// get rid of last newline
+TidyLines = TidyLines.substring(0, TidyLines.length - 1);
+const xinput = document.getElementById('tidy-text');
+xinput.value = TidyLines;
+}
+
+function removeItemAll(arr) {
+var i = 0;
+while (i < arr.length) {
+  if (arr[i].length < 3) {
+    arr.splice(i, 1);
+  } else {
+    ++i;
+  }
+}
+return arr;
+}
+
+function shuffleArray() {
+const xxinput = document.getElementById('tidy-text');
+var xxarray = xxinput.value.split("\n");
+removeItemAll(xxarray)
+for (let i = xxarray.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [xxarray[i], xxarray[j]] = [xxarray[j], xxarray[i]];
+}
+var fourballs = "";
+var groupnumber = 0;
+var timegap = 8;
+var timefirsttee = starttt.value.split(":");
+var ast = (parseInt(timefirsttee[0]) * 60) + (parseInt(timefirsttee[1]));
+var ttt = "";
+var tt = 0;
+var tth = 0;
+var ttm = 0;
+for (j = 0; j < xxarray.length; j++) {
+  // do number compensations
+  // adjust for different numbers and add to front
+  if (xxarray.length % 4 == 1) {
+    // 3 groups of 3
+    var r3 = "3 groups of 3";
+    var r4 = ((xxarray.length - 9) / 4) + " groups of 4";
+    if (j < 10) {
+      if (j % 3 == 0) {
+        tt = ast + (groupnumber * timegap);
+        ttm = tt%60;
+        tth = ( (tt - ttm) / 60 );
+        ttt = tth.toString().padStart(2,"0") + ":" + ttm.toString().padStart(2,"0");
+        groupnumber++
+        fourballs = fourballs + "\n--- group " + groupnumber + " --- " + ttt + " \n";
+      }
+    }
+    if (j > 9) {
+      jj = (j - 9);
+      if (jj % 4 == 0) {
+        tt = ast + (groupnumber * timegap);
+        ttm = tt%60;
+        tth = ( (tt - ttm) / 60 );
+        ttt = tth.toString().padStart(2,"0") + ":" + ttm.toString().padStart(2,"0")
+        groupnumber++
+        fourballs = fourballs + "\n--- group " + groupnumber + " --- " + ttt + " \n";
+      }
+    }
+  }
+  if (xxarray.length % 4 == 2) {
+    // 2 groups of 3
+    var r3 = "2 groups of 3";
+    var r4 = ((xxarray.length - 6) / 4) + " groups of 4";
+    if (j < 7) {
+      if (j % 3 == 0) {
+        tt = ast + (groupnumber * timegap);
+        ttm = tt%60;
+        tth = ( (tt - ttm) / 60 );
+        ttt = tth.toString().padStart(2,"0") + ":" + ttm.toString().padStart(2,"0")
+        groupnumber++
+        fourballs = fourballs + "\n--- group " + groupnumber + " --- " + ttt + " \n";
+      }
+    }
+    if (j > 6) {
+      jj = (j - 6);
+      if (jj % 4 == 0) {
+        tt = ast + (groupnumber * timegap);
+        ttm = tt%60;
+        tth = ( (tt - ttm) / 60 );
+        ttt = tth.toString().padStart(2,"0") + ":" + ttm.toString().padStart(2,"0")
+        groupnumber++
+        fourballs = fourballs + "\n--- group " + groupnumber + " --- " + ttt + " \n";
+      }
+    }
+  }
+  if (xxarray.length % 4 == 3) {
+    // 1 group of 3
+    var r3 = "1 group of 3";
+    var r4 = ((xxarray.length - 3) / 4) + " groups of 4";
+    if (j < 4) {
+      if (j % 3 == 0) {
+        tt = ast + (groupnumber * timegap);
+        ttm = tt%60;
+        tth = ( (tt - ttm) / 60 );
+        ttt = tth.toString().padStart(2,"0") + ":" + ttm.toString().padStart(2,"0")
+        groupnumber++
+        fourballs = fourballs + "\n--- group " + groupnumber + " --- " + ttt + " \n";
+      }
+    }
+    if (j > 3) {
+      jj = (j - 3);
+      if (jj % 4 == 0) {
+        tt = ast + (groupnumber * timegap);
+        ttm = tt%60;
+        tth = ( (tt - ttm) / 60 );
+        ttt = tth.toString().padStart(2,"0") + ":" + ttm.toString().padStart(2,"0")
+        groupnumber++
+        fourballs = fourballs + "\n--- group " + groupnumber + " --- " + ttt + " \n";
+      }
+    }
+  }
+  // for no remainder
+  if (xxarray.length % 4 == 0) {
+    var r3 = "no group of 3";
+    var r4 = ((xxarray.length) / 4) + " groups of 4";
+    if (j % 4 == 0) {
+        tt = ast + (groupnumber * timegap);
+        ttm = tt%60;
+        tth = ( (tt - ttm) / 60 );
+        ttt = tth.toString().padStart(2,"0") + ":" + ttm.toString().padStart(2,"0")
+      groupnumber++
+      fourballs = fourballs + "\n--- group " + groupnumber + " --- " + ttt + " \n";
+    }
+  }
+  fourballs = fourballs + xxarray[j] + "\n";
+}
+const fourballgroups = document.getElementById('groups-text');
+fourballgroups.value = fourballs;
+var resultstxt = xxarray.length + " players\n" + groupnumber + " groups\n\n\n" + r3 + "\nthen\n" + r4
+const fourballresults = document.getElementById("results-text");
+fourballresults.value = resultstxt
+}
+
+function selectFunction() {
+document.getElementById("groups-text").select();
+document.execCommand('copy');
+}
+
+</script>
+</body> 
+</html>
+
+
