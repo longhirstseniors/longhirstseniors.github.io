@@ -26,10 +26,43 @@
  (click on clock icon)
 <br><br>
 
+    <textarea name = "traw-text"
+        id = "traw-text"
+        rows = "8"
+        cols = "25"
+        readonly
+        style = "background-color: #A0A0A0;font-size:18px">Copy the text from the BRS tee-sheet and include the whole page using CTRL-a to select all and then CTRL-c to copy it.
+Paste into red panel using CTRL-v or mouse.
+    </textarea>
+    <textarea name = "ttidy-text"
+        id = "ttidy-text"
+        rows = "8"
+        cols = "30"
+        readonly
+        style = "background-color: #A0A0A0;font-size:18px">Click button 1 to tidy the data and create a list of players in the green panel.
+Do any additional editing (delete, add names etc.) in the green panel. Check first tee-time above.
+    </textarea>
+    <textarea name = "tgroups-text"
+        id = "tgroups-text"
+        rows = "8"
+        cols = "30"
+        readonly
+        style = "background-color: #A0A0A0;font-size:18px">Click button 2 to create the 4-ball groups and tee-times.
+Button 3 will copy the blue panel contents so they can be pasted elsewhere.
+    </textarea> 
+    <textarea name = "tresults-text"
+        id = "tresults-text"
+        rows = "8"
+        cols = "15"
+        readonly
+        style = "background-color: #D0D0D0;font-size:18px" >   
+    </textarea>
+
+
     <textarea name = "raw-text"
         id = "raw-text"
         rows = "15"
-        cols = "20"
+        cols = "25"
         style = "background-color: #ff99bb;font-size:18px">
     </textarea>
     <textarea name = "tidy-text"
@@ -41,7 +74,7 @@
     <textarea name = "groups-text"
         id = "groups-text"
         rows = "15"
-        cols = "35"
+        cols = "30"
         style = "background-color: #80bfff;font-size:18px">
     </textarea> 
     <textarea name = "results-text"
@@ -52,30 +85,18 @@
     </textarea>
     <br>
     <button onclick = "tidyInput()"
-        style = "font-size : 20px;background-color: #A0A0A0;" /> Tidy input to create list of names </button>
+        style = "font-size : 20px;background-color: #A0A0A0;" /> Button 1 - Tidy input to create list of names </button>
+    tries to do the major part of tidying the data and produces a list of players (which is editable).
+    <br><br>
     <button onclick = "shuffleArray()"
-        style = "font-size : 20px;background-color: #A0A0A0;" / > Create 4-ball groups </button>
+        style = "font-size : 20px;background-color: #A0A0A0;" / > Button 2 - Create 4-ball groups </button>
+    creates random 4-ball (and 3-ball where necessary) groups and allocates tee-times.
+    <br><br>
     <button onclick = "selectFunction()"
-        style = "font-size : 20px;background-color: #A0A0A0;" > Copy tee-sheet to clipboard </button>
-    <br>
-    <p> Make a copy of the raw data from the BRS tee-sheet and include the whole page.This can be edited later
-      if necessary.The easiest way to do this is CTRL-a to select all and then CTRL-c to copy it. Then use mouse or CTRL-v to paste.
-    </p>
-    <p>
-        Paste this data into the first panel. 
-    </p>
-    <p>
-        Use the <b>Tidy input to create list of names</b> button to convert to a list of players which will appear in the second panel.
-    </p>
-    <p>
-        At this point any editing can be done in the green panel. 
-    </p>
-    <p>
-        When ready use the <b>Create 4-ball groups</b> button to create a random list of 4-ball groups in the third panel. 
-    </p>
-    <p>
-        Use <b>Copy tee-sheet to clipboard</b> button to copy the tee-sheet which will make it available to paste.
-    </p>
+        style = "font-size : 20px;background-color: #A0A0A0;" > Button 3 - Copy tee-sheet to clipboard </button>
+    copies the created tee-sheet to the clipboard so it can be pasted into a document.
+    <br><br><br>
+    NB: every click on button 2 creates a new randomised order. So repeated clicks create different results.
     <br><br><br>
 <script>
 function tidyInput() {
@@ -100,13 +121,15 @@ for (i = 0; i < arrayOfLines.length; i++) {
             if (arrayOfLines[i].indexOf("STARTING") < 0) {
               if (arrayOfLines[i].indexOf("ENDING") < 0) {
                 if (arrayOfLines[i].indexOf("Seniors") < 0) {
-                  if (arrayOfLines[i].indexOf("Info") < 0) {
-                    if (arrayOfLines[i].indexOf("Mens") < 0) {
-                      if (arrayOfLines[i].indexOf("Entry") < 0) {
-                        if (TidyLines.indexOf(arrayOfLines[i]) < 0) {
-                          TidyLines = TidyLines + arrayOfLines[i] + "\n";
+                  if (arrayOfLines[i].indexOf("SENIORS") < 0) {
+                    if (arrayOfLines[i].indexOf("Info") < 0) {
+                      if (arrayOfLines[i].indexOf("Mens") < 0) {
+                        if (arrayOfLines[i].indexOf(":") < 0) {
+                          if (TidyLines.indexOf(arrayOfLines[i]) < 0) {
+                            TidyLines = TidyLines + arrayOfLines[i] + "\n";
+                          }
                         }
-                      }   
+                      }
                     }
                   }
                 }
@@ -265,5 +288,8 @@ document.execCommand('copy');
 </script>
 </body> 
 </html>
+
+
+
 
 
