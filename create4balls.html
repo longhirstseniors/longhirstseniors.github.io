@@ -164,8 +164,13 @@ for (i = 0; i < arrayOfLines.length; i++) {
                           if (arrayOfLines[i].indexOf("Competition") < 0) {                                                                
                             if (TidyLines.indexOf(arrayOfLines[i]) < 0) {                                    
                               //TidyLines = TidyLines + arrayOfLines[i] + "\n";
+                              arrayOfLines[i] = arrayOfLines[i].replace(' - 6 month pp buggy -','');      
+                              arrayOfLines[i] = arrayOfLines[i].replace(' - Buggy Required',''); 
+                              arrayOfLines[i] = arrayOfLines[i].replace(' 6 months buggies','');
+                              arrayOfLines[i] = arrayOfLines[i].replace(' (Buggy prepaid',''); 
+                                     
                               TidyLines = TidyLines + arrayOfLines[i].substring(0, 24) + "\n";
-                            }                                 
+                                     
                           }            
                         }
                       }
