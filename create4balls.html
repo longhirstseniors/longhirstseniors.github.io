@@ -166,7 +166,8 @@ for (i = 0; i < arrayOfLines.length; i++) {
                             arrayOfLines[i] = arrayOfLines[i].replace(' - 6 month pp buggy -','');      
                             arrayOfLines[i] = arrayOfLines[i].replace(' - Buggy Required',''); 
                             arrayOfLines[i] = arrayOfLines[i].replace(' 6 months buggies','');
-                            arrayOfLines[i] = arrayOfLines[i].replace(' (Buggy prepaid','');                                            
+                            arrayOfLines[i] = arrayOfLines[i].replace(' (Buggy prepaid','');
+                            arrayOfLines[i] = arrayOfLines[i].replace('David Cav','David Cave');      
                             if (TidyLines.indexOf(arrayOfLines[i]) < 0) {                                                                  
                               TidyLines = TidyLines + arrayOfLines[i].substring(0, 24) + "\n";                                     
                             }                                     
