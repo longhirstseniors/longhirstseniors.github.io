@@ -164,7 +164,7 @@ for (i = 0; i < arrayOfLines.length; i++) {
                           if (arrayOfLines[i].indexOf("Competition") < 0) {                                                                
                             if (TidyLines.indexOf(arrayOfLines[i]) < 0) {                                    
                               //TidyLines = TidyLines + arrayOfLines[i] + "\n";
-                              TidyLines = TidyLines + arrayOfLines[i].substring(0, 25);
+                              TidyLines = TidyLines + arrayOfLines[i].substring(0, 24) + "\n";
                             }                                 
                           }            
                         }
