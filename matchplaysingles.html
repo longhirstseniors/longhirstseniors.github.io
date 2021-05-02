@@ -1,325 +1,647 @@
 
-
 <!DOCTYPE html>
-<html style="font-size: 16px; font-family:Arial, Helvetica, sans-serif;">
+<html style="font-size: 16px; font-family:Arial, Helvetica, sans-serif; background-color:#337799;">
 <head lang="en">
+	<meta charset="UTF-8">
+	<title>Matchplay singles</title>
+	<style>
+	html {
+	    height: 100%;
+	    width: 100%;
+	}
+	body {
+	    font-family: sans-serif;
+	    height: 100%;
+	    width: 100%;
+	}
+	.theme {
+	    height: 100%;
+	    width: 100%;
+	    position: absolute;
+	}
+	.bracket {
+	    padding: 40px;
+	    margin: 5px;
+	}
+	.bracket {
+	    display: flex;
+	    flex-direction: row;
+	    position: relative;
+	}
+	.column {
+	    display: flex;
+	    flex-direction: column;
+	    min-height: 100%;
+	    justify-content: space-around;
+	    align-content: center;
+	}
+	.match {
+	    position: relative;
+	    display: flex;
+	    flex-direction: column;
+	    min-width: 240px;
+	    max-width: 240px;
+	    height: 62px;
+	    margin: 12px 24px 12px 0;
+	}
+	.match .match-top {
+	    border-radius: 2px 2px 0 0;
+	}
+	.match .match-bottom {
+	    border-radius: 0 0 2px 2px;
+	}
+	.match .team {
+	    display: flex;
+	    align-items: center;
+	    width: 100%;
+	    height: 100%;
+	    border: 1px solid black;
+	    position: relative;
+	}
+	.match .team span {
+	    padding-left: 8px;
+	}
+	.match .team span:last-child {
+	    padding-right: 8px;
+	}
+	.match .team .score {
+	    margin-left: auto;
+	}
+	.match .team:first-child {
+	    margin-bottom: -1px;
+	}
+	.match-lines {
+	    display: block;
+	    position: absolute;
+	    top: 50%;
+	    bottom: 0;
+	    margin-top: 0px;
+	    right: -1px;
+	}
+	.match-lines .line {
+	    background: red;
+	    position: absolute;
+	}
+	.match-lines .line.one {
+	    height: 1px;
+	    width: 12px;
+	}
+	.match-lines .line.two {
+	    height: 44px;
+	    width: 1px;
+	    left: 11px;
+	}
+	.match-lines.alt {
+	    left: -12px;
+	}
+	.match:nth-child(even) .match-lines .line.two {
+	    transform: translate(0, -100%);
+	}
+	.column:first-child .match-lines.alt {
+	    display: none;
+	}
+	.column:last-child .match-lines {
+	    display: none;
+	}
+	.column:last-child .match-lines.alt {
+	    display: block;
+	}
+	.column:nth-child(2) .match-lines .line.two {
+	    height: 88px;
+	}
+	.column:nth-child(3) .match-lines .line.two {
+	    height: 175px;
+	}
+	.column:nth-child(4) .match-lines .line.two {
+	    height: 262px;
+	}
+	.column:nth-child(5) .match-lines .line.two {
+	    height: 349px;
+	}
+	.theme-light {
+	    background: #337799;
+	    border-color: #e6eaf7;
+	}
+	.theme-light .match-lines .line {
+	    background: #dadfe3;
+	}
+	.theme-light .team {
+	    background: #fff;
+	    border-color: #dadfe3;
+	    color: #708392;
+	}
+	.theme-light .winner-top .match-top, .theme-light .winner-bottom .match-bottom {
+	    background: #fff;
+	    color: #272f36;
+	    border-color: #dadfe3;
+	    z-index: 1;
+	}
+	.theme-light .match .seed {
+	    color: #9fafbf;
+	}
+	.theme-light .match .score {
+	    color: #9fafbf;
+	}
+	.theme-light .match .seed {
+	    font-size: 12px;
+	    min-width: 10px;
+	}
+	.theme-light .match .score {
+	    font-size: 14px;
+	}
 
-<style>
+	{
+	    display: none !important;
+	}
+	.disable-borders {
+	    border-width: 0px !important;
+	}
+	.disable-borders .team {
+	    border-width: 0px !important;
+	}
+	.disable-seperator .match-top {
+	    border-bottom: 0px !important;
+	}
+	.disable-seperator .match-bottom {
+	    border-top: 0px !important;
+	}
+	.disable-seperator .team:first-child {
+	    margin-bottom: 0px;
+	}
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.col {
-   /* flex: 1 0 18%; The important bit. This percentage decides your columns. 
- The percent can be px. It just represents your minimum starting width.
-  */
-  flex: 1 0 15%;
-  margin: 5px;
-  background: grey;
-  height: 50px;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-</style>
-
-<head>
-<div class="row">
-  <div class="col">Round 1 - dawson<br>by 7th June</div>
-  <div class="col">Round 2 - lakes<br>by 5th July</div>
-  <div class="col">Round 3 - dawson<br>by 2nd August</div>
-  <div class="col">semi-finals - lakes<br>by 30th August</div>
-  <div class="col">finals - dawson<br>by 20th September</div>
- <!--  <div class="col">Matchplay singles</div>
-  -->
-</div>
-
-
-
-
+	</style>
 </head>
 
-
-
-<style>
-
-
-
-
-body {
-	 background: #14bd9d;
-}
- .tournament {
-	 position: relative;
-	 min-height: 300px;
-	 padding: 30px 0 0;
-}
- .tournament__grid {
-	 font-size: 0;
-	 line-height: 0;
-	 display: flex;
-	 align-items: stretch;
-	 min-height: 400px;
-}
- .tournament__round {
-	 position: relative;
-	 flex: 1 0;
-	 overflow: hidden;
-	 display: flex;
-	 flex-direction: column;
-}
- .tournament__match {
-	 position: relative;
-	 overflow: hidden;
-	 display: flex;
-	 flex-direction: column;
-	 flex: 1 0;
-	 align-items: center;
-	 min-height: 100px;
-}
- .tournament__match:first-child {
-	 margin: 0 !important;
-}
- .tournament__round--first-round .tournament__match {
-	 padding-left: 0;
-}
- .tournament__round--second-round .tournament__match {
-	 padding-left: 0;
-}
- .tournament__round--third-round .tournament__match {
-	 padding-left: 0;
-}	
- .tournament__round--winner .tournament__match {
-	 padding-right: 0;
-	 height: 32px;
-}
- .tournament__match:after {
-	 content: '';
-	 position: absolute;
-	 right: 0;
-	 width: 2px;
-	 background: rgba(0, 0, 0, .2);
-	 top: 25%;
-	 bottom: 25%;
-}
- .tournament__round--winner .tournament__match:after, .tournament__round--end-point .tournament__match:after {
-	 display: none;
-}
- .tournament__match__team {
-	 font-size: 14px;
-	 font-weight: bold;
-	 transition: color 0.3s ease;
-	 color: #ccc;
-	 text-decoration: none;
-	 box-sizing: border-box;
-	 background: rgba(0, 0, 0, .5);
-	 display: block;
-	 position: relative;
-	 width: auto;
-	 height: 32px;
-	 line-height: 32px;
-	 padding: 0 5px 0 5px;
-	 margin: auto;
-}
- .tournament__match__team:focus, .tournament__match__team:hover {
-	 color: #fff;
-}
- .tournament__match__team:before, .tournament__match__team:after {
-	 content: '';
-	 position: absolute;
-	 top: 50%;
-	 width: 999px;
-	 height: 2px;
-	 margin-top: -1px;
-	 background: rgba(0, 0, 0, .2);
-}
- .tournament__match__team:after {
-	 left: 100%;
-}
- .tournament__round:last-child .tournament__match__team:after, .tournament__round--end-point .tournament__match__team:after {
-	 display: none;
-}
- .tournament__match__team:before {
-	 right: 100%;
-}
- .tournament__round:first-child .tournament__match__team:before {
-	 display: none;
-}
-
-</style>
-
-
-
-<font size=12; color="#ccc";>Matchplay singles competition</font>
-
-<div class="tournament">
-  <!-- tournament logo -->
-  <div class="tournament__logo-container tournament__logo-container--right">
-    <strong class="tournament__logo tournament__logo--gold"></strong>
-  </div>
-  <div class="tournament__grid">
-    <!-- tournament__round 1/8 -->
-    <div class="tournament__round tournament__round--first-round">
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">Andy Davidson</a>
-        <a class="tournament__match__team" href="#">Roly Thompson</a>
-      </div>
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">Mike Riddell</a>
-        <a class="tournament__match__team" href="#">---------------</a>
-      </div>
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">Graham Airey</a>
-        <a class="tournament__match__team" href="#">Rob Connelly</a>
-      </div>
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">Keith Belshaw</a>
-        <a class="tournament__match__team" href="#">---------------</a>
-      </div>
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">Tony Smith</a>
-        <a class="tournament__match__team" href="#">Roger Ireland</a>
-      </div>
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">Brian Wray</a>
-        <a class="tournament__match__team" href="#">---------------</a>
-      </div>
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">Richard Headley</a>
-        <a class="tournament__match__team" href="#">John Mathews</a>
-      </div>
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">Dennis Patterson</a>
-        <a class="tournament__match__team" href="#">---------------</a>
-      </div>
-	<div class="tournament__match">
-        <a class="tournament__match__team" href="#">Ray Straker</a>
-        <a class="tournament__match__team" href="#">---------------</a>
-      </div>
-	<div class="tournament__match">
-        <a class="tournament__match__team" href="#">Clive Caisley</a>
-        <a class="tournament__match__team" href="#">Dale Aitkenhead</a>
-      </div>
-	<div class="tournament__match">
-        <a class="tournament__match__team" href="#">David Jackson</a>
-        <a class="tournament__match__team" href="#">Brian Simpson</a>
-      </div>
-	<div class="tournament__match">
-        <a class="tournament__match__team" href="#">John Dean</a>
-        <a class="tournament__match__team" href="#">Pete Holleran</a>
-      </div>
-	<div class="tournament__match">
-        <a class="tournament__match__team" href="#">Clive Herbert</a>
-        <a class="tournament__match__team" href="#">Dave Gilroy</a>
-      </div>
-	<div class="tournament__match">
-        <a class="tournament__match__team" href="#">John Jackson</a>
-        <a class="tournament__match__team" href="#">Ken Clark</a>
-      </div>
-	<div class="tournament__match">
-        <a class="tournament__match__team" href="#">Bryan Maddison</a>
-        <a class="tournament__match__team" href="#">Rob Green</a>
-      </div>    
-	<div class="tournament__match">
-        <a class="tournament__match__team" href="#">Gary Cowman</a>
-        <a class="tournament__match__team" href="#">Neil Tait</a>
-      </div>        
-    </div>
-	  
-<!-- tournament__round 2 -->
-    <div class="tournament__round tournament__round--second-round">
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">---------------</a>
-        <a class="tournament__match__team" href="#">Mike Riddell</a>
-      </div>
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">---------------</a>
-        <a class="tournament__match__team" href="#">Keith Belshaw</a>
-      </div>
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">---------------</a>
-        <a class="tournament__match__team" href="#">Brian Wray</a>
-      </div>
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">---------------</a>
-        <a class="tournament__match__team" href="#">Dennis Patterson</a>
-      </div>
-	 <div class="tournament__match">
-        <a class="tournament__match__team" href="#">Ray Straker</a>
-        <a class="tournament__match__team" href="#">---------------</a>
-      </div>
-        <div class="tournament__match">
-        <a class="tournament__match__team" href="#">---------------</a>
-        <a class="tournament__match__team" href="#">---------------</a>
-      </div>
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">---------------</a>
-        <a class="tournament__match__team" href="#">---------------</a>
-      </div>
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">---------------</a>
-        <a class="tournament__match__team" href="#">---------------</a>
-      </div>    
-    </div>
-
-	  
-	<!-- tournament__round 3 -->
-      <div class="tournament__round tournament__round--third-round">
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">---------------</a>
-        <a class="tournament__match__team" href="#">---------------</a>
-      </div>
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">---------------</a>
-        <a class="tournament__match__team" href="#">---------------</a>
-      </div>  
-	<div class="tournament__match">
-        <a class="tournament__match__team" href="#">---------------</a>
-        <a class="tournament__match__team" href="#">---------------</a>
-      </div>
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">---------------</a>
-        <a class="tournament__match__team" href="#">---------------</a>
-      </div>            
-    </div>  
-	  
-	  
-	  
-	  
-    <!-- tournament__round 1/2 -->
-    <div class="tournament__round tournament__round--semi">
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">---------------</a>
-        <a class="tournament__match__team" href="#">---------------</a>
-      </div>
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">---------------</a>
-        <a class="tournament__match__team" href="#">---------------</a>
-      </div>
-    </div>
-
-    <!-- tournament__round final -->
-    <div class="tournament__round tournament__round--final">
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">---------------</a>
-        <a class="tournament__match__team" href="#">---------------</a>
-      </div>
-    </div>
-
-    <!-- tournament__round winner -->
-    <div class="tournament__round tournament__round--winner">
-      <div class="tournament__match">
-        <a class="tournament__match__team" href="#">---------------</a>
-      </div>
-    </div>
-  </div>
-
-</div>
+<body>
+	<div class="theme-light">
+		<div class="bracket disable-image">
+			<div class="column one">
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">Andy Davidson</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">Roly Thompson</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+					<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">Mike Riddell</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+						</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">Graham Airey</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">Rob Connelly</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">Keith Belshaw</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">Tony Smith</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">Roger Ireland</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">Brian Wray</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">Richard Headley</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">John Mathews</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">Dennis Patterson</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">Ray Straker</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">Clive Caisley</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+					<span class=" "></span> <span class="name">Dale Aitkenhead</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">David Jackson</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">Brian Simpson</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">John Dean</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">Pete Holleran</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">Clive Herbert</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">Dave Gilroy</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">John Jackson</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">Ken Clark</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">Bryan Maddison</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">Rob Green</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+								<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">Gary Cowman</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">Neil Tait</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+			</div>
+			<div class="column two">
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">Mike Riddell</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">Keith Belshaw</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">Brian Wray</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">Dennis Patterson</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">Ray Straker</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+			</div>
+			<div class="column three">
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			
+			
+			<div class="column four">
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+				<div class="match winner-top">
+					<div class="match-top team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-bottom team">
+						<span class=" "></span> <span class="name">----------</span> <span class="score"></span>
+					</div>
+					<div class="match-lines">
+						<div class="line one"></div>
+						<div class="line two"></div>
+					</div>
+					<div class="match-lines alt">
+						<div class="line one"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
 </html>
+
 
 
